@@ -21,7 +21,7 @@ const confirmOrderBtn = document.getElementById("confirm-order");
 
 // --- Fetch & Parse CSV Data ---
 function loadMenu() {
-    Papa.parse("menu.csv", {
+    Papa.parse("menu.csv?v=" + new Date().getTime(), {
         download: true,
         header: true,
         complete: function (results) {
