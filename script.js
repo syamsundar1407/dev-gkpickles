@@ -36,7 +36,7 @@ function loadMenu() {
                         id: index + 1,
                         title: row['Product Name'],
                         price250, price500, price1000,
-                        category: (row['Category'] || '').toLowerCase() === 'veg' ? 'veg' : 'non-veg',
+                        category: (row['Category'] || '').toLowerCase().replace(/[^a-z-]/g, ''),
                         image: row['Image URL'] || 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=600&auto=format&fit=crop',
                         stock: row['Stock Status'] || 'In Stock',
                         bestseller: (row['Bestseller'] || '').toLowerCase() === 'yes'
@@ -74,7 +74,7 @@ function renderProducts(filter = "all", searchQuery = "") {
         // Show OUT OF STOCK badge if needed
         let stockTag = product.stock.toLowerCase().includes('out') ?
             `<div class="product-tag" style="background:var(--text-secondary)">OUT OF STOCK</div>` :
-            `<div class="product-tag tag-${product.category}">${product.category === 'veg' ? 'Veg' : 'Non-Veg'}</div>`;
+            `<div class="product-tag tag-${product.category}">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</div>`;
 
         // Render Bestseller Badge
         let bestsellerBadge = product.bestseller ? `<div class="bestseller-badge">🔥 BESTSELLER</div>` : "";

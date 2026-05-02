@@ -501,6 +501,16 @@ ul {
     color: white;
 }
 
+.tag-sweets {
+    background: #e65100;
+    color: white;
+}
+
+.tag-powders {
+    background: #8d6e63;
+    color: white;
+}
+
 .product-info {
     padding: 24px;
 }
