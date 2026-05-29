@@ -22,25 +22,30 @@
 <body>
     <header class="site-header" id="top">
         <a class="brand" href="#home" aria-label="GK Pickles home">
-            <span class="brand-mark">GK</span>
+            <img class="brand-logo" src="images/gk-pickles-logo.png" alt="GK Pickles logo">
             <span>
                 <strong>GK Pickles</strong>
-                <small>Andhra Homemade</small>
+                <small>Andhra Homemade Pickles</small>
             </span>
         </a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#categories">Categories</a>
-            <a href="#order">Order</a>
-            <a href="#contact">Contact</a>
-            <a href="#login">Login</a>
-        </nav>
+        <div class="header-actions">
+            <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#categories">Categories</a>
+                <a href="#order">Order</a>
+                <a href="#contact">Contact</a>
+                <a href="#login">Login</a>
+            </nav>
+            <form class="site-search" role="search">
+                <input id="product-search" type="search" placeholder="Search" aria-label="Search products">
+            </form>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
     </header>
 
     <main>
@@ -49,8 +54,12 @@
             <div class="hero-overlay"></div>
             <div class="hero-content reveal">
                 <div class="logo-badge">
-                    <span class="brand-mark">GK</span>
-                    <span>Premium Andhra Homemade Pickles</span>
+                    <img class="brand-logo" src="images/gk-pickles-logo.png" alt="GK Pickles logo">
+                    <span class="badge-text">
+                        <strong>Authentic Andhra Homemade Pickles</strong>
+                        <em>Traditional Taste... Made with Love</em>
+                        <span class="badge-ornament" aria-hidden="true"></span>
+                    </span>
                 </div>
                 <h1>GK Pickles</h1>
                 <p class="tagline">Spicy Taste That Touches The Heart ❤️</p>
@@ -63,11 +72,15 @@
         </section>
 
         <section class="about page-section" id="about">
-            <div class="section-kicker reveal">About GK Pickles</div>
+            <div class="section-kicker about-kicker reveal">
+                <span>About Us</span>
+            </div>
             <div class="split">
-                <div class="reveal">
-                    <h2>Traditional Andhra taste, made at home with premium care.</h2>
-                    <p>GK Pickles brings the bold spice, tangy depth, and oil-rich aroma of Andhra kitchens into carefully packed homemade batches. Every recipe is made to taste familiar, festive, and deeply satisfying with hot rice, ghee, dosa, curd rice, or snacks.</p>
+                <div class="about-copy reveal">
+                    <h2>GK Pickles brings the authentic taste of traditional Andhra homemade pickles to your family.</h2>
+                    <p>At GK Pickles, every batch is prepared using carefully selected ingredients, traditional recipes, and homemade methods passed down through generations. We believe great pickles should taste just like they do at home: fresh, flavorful, and made with care.</p>
+                    <p>We use quality fruits, vegetables, spices, and cold-pressed oils to create rich, authentic flavors that complement every meal. From spicy Avakaya to tangy Gongura, every jar is packed with traditional Andhra taste.</p>
+                    <p>100% Homemade • Pure Ingredients • Traditional Taste</p>
                 </div>
                 <div class="about-card reveal">
                     <img src="images/mango_pickle.jpg" alt="Mango pickle jar">
@@ -258,7 +271,7 @@
     <footer class="site-footer">
         <div>
             <a class="brand footer-brand" href="#home">
-                <span class="brand-mark">GK</span>
+                <img class="brand-logo" src="images/gk-pickles-logo.png" alt="GK Pickles logo">
                 <span>
                     <strong>GK Pickles</strong>
                     <small>Traditional Andhra Homemade</small>

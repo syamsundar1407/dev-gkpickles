@@ -94,16 +94,31 @@ const siteNav = document.querySelector(".site-nav");
 const siteHeader = document.querySelector(".site-header");
 const feedbackForm = document.getElementById("feedback-form");
 const formStatus = document.getElementById("form-status");
+const searchForm = document.querySelector(".site-search");
+const searchInput = document.getElementById("product-search");
+let activeCategory = "all";
 
 function orderLink(productName) {
     const message = `Hi GK Pickles, I want to order ${productName}. Please share availability, quantity options, and delivery details.`;
     return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
-function renderProducts(category = "all") {
-    const visibleProducts = category === "all"
+function renderProducts(category = activeCategory) {
+    const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : "";
+    const categoryProducts = category === "all"
         ? products
         : products.filter((product) => product.category === category);
+    const visibleProducts = searchTerm
+        ? categoryProducts.filter((product) => {
+            const searchableText = `${product.name} ${product.description} ${categoryLabel(product.category)}`.toLowerCase();
+            return searchableText.includes(searchTerm);
+        })
+        : categoryProducts;
+
+    if (!visibleProducts.length) {
+        productGrid.innerHTML = `<div class="no-results">No products found. Try mango, chicken, lemon, prawns, or podi.</div>`;
+        return;
+    }
 
     productGrid.innerHTML = visibleProducts.map((product) => `
         <article class="product-card reveal visible" data-product-category="${product.category}">
@@ -135,10 +150,25 @@ categoryButtons.forEach((button) => {
     button.addEventListener("click", () => {
         categoryButtons.forEach((item) => item.classList.remove("active"));
         button.classList.add("active");
-        renderProducts(button.dataset.category);
+        activeCategory = button.dataset.category;
+        renderProducts(activeCategory);
         document.getElementById("order").scrollIntoView({ behavior: "smooth", block: "start" });
     });
 });
+
+if (searchInput) {
+    searchInput.addEventListener("input", () => {
+        renderProducts(activeCategory);
+    });
+}
+
+if (searchForm) {
+    searchForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        renderProducts(activeCategory);
+        document.getElementById("order").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+}
 
 menuToggle.addEventListener("click", () => {
     const isOpen = siteNav.classList.toggle("open");
