@@ -181,7 +181,7 @@ textarea {
     display: none;
     width: 44px;
     height: 44px;
-    border: 1px solid var(--line);
+    border: 2px solid var(--green);
     background: var(--paper);
     border-radius: var(--radius);
     padding: 10px;
@@ -192,6 +192,7 @@ textarea {
     height: 2px;
     margin: 5px 0;
     background: var(--deep-red);
+    border-radius: 999px;
 }
 
 .page-section {
@@ -250,12 +251,6 @@ textarea {
     width: 38px;
     height: 38px;
     font-size: 0.95rem;
-}
-
-.logo-badge .brand-logo {
-    width: 56px;
-    height: 56px;
-    flex-basis: 56px;
 }
 
 .badge-text {
@@ -324,10 +319,48 @@ h3 {
 }
 
 .tagline {
-    margin: 10px 0 0;
+    display: inline-grid;
+    gap: 4px;
+    margin: 12px 0 0;
+    color: var(--green);
+    font-family: var(--heading);
+    font-weight: 800;
+    line-height: 1.08;
+}
+
+.tagline-line {
+    display: block;
+    font-size: clamp(1.95rem, 4vw, 3.5rem);
+    letter-spacing: 0;
+    text-shadow: 0 2px 0 rgba(255, 250, 242, 0.78);
+}
+
+.tagline-chilli {
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 0.85em;
+    transform: rotate(-12deg) translateY(4px);
+}
+
+.tagline-heart {
+    display: block;
+    margin-top: 8px;
     color: var(--red);
-    font-size: clamp(1.45rem, 3vw, 2.35rem);
-    font-weight: 900;
+    font-family: "Great Vibes", "Brush Script MT", cursive;
+    font-size: clamp(5.2rem, 12vw, 10rem);
+    font-weight: 400;
+    line-height: 0.82;
+    text-shadow: 0 3px 0 rgba(255, 250, 242, 0.85);
+}
+
+.tagline-heart span {
+    display: inline-block;
+    margin-left: 6px;
+    color: var(--red);
+    font-family: var(--heading);
+    font-size: 0.58em;
+    font-weight: 700;
+    transform: rotate(-12deg) translateY(-8px);
 }
 
 .hero-copy {
@@ -393,6 +426,13 @@ h3 {
     font-weight: 900;
     letter-spacing: 0.16em;
     text-transform: uppercase;
+}
+
+.category-kicker {
+    color: var(--red);
+    font-size: 1.35rem;
+    letter-spacing: 0;
+    text-transform: none;
 }
 
 .about-kicker {
@@ -957,12 +997,6 @@ textarea:focus {
         align-items: flex-start;
         max-width: 100%;
         border-radius: var(--radius);
-    }
-
-    .logo-badge .brand-logo {
-        width: 50px;
-        height: 50px;
-        flex-basis: 50px;
     }
 
     .badge-text strong {

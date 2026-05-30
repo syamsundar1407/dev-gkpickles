@@ -16,7 +16,7 @@
     <meta property="og:image" content="https://gkpickles.com/images/andhra-hero-gk-pickles.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -54,7 +54,6 @@
             <div class="hero-overlay"></div>
             <div class="hero-content reveal">
                 <div class="logo-badge">
-                    <img class="brand-logo" src="images/gk-pickles-logo.png" alt="GK Pickles logo">
                     <span class="badge-text">
                         <strong>Authentic Andhra Homemade Pickles</strong>
                         <em>Traditional Taste... Made with Love</em>
@@ -62,8 +61,11 @@
                     </span>
                 </div>
                 <h1>GK Pickles</h1>
-                <p class="tagline">Spicy Taste That Touches The Heart ❤️</p>
-                <p class="hero-copy">Small-batch Andhra pickles made with sun-loved ingredients, hand-roasted spices, and the old-home patience that turns every meal into comfort.</p>
+                <div class="tagline" aria-label="Spicy Taste That Touches The Heart">
+                    <span class="tagline-line">Spicy Taste That <span class="tagline-chilli" aria-hidden="true">🌶️</span></span>
+                    <span class="tagline-line">Touches The</span>
+                    <span class="tagline-heart">Heart <span aria-hidden="true">♡</span></span>
+                </div>
                 <div class="hero-actions">
                     <a class="btn primary" href="#order">Order on WhatsApp</a>
                     <a class="btn secondary" href="#categories">Explore Categories</a>
@@ -94,7 +96,7 @@
 
         <section class="categories page-section" id="categories">
             <div class="section-heading reveal">
-                <span class="section-kicker">Categories</span>
+                <span class="section-kicker category-kicker">Categories</span>
                 <h2>Pick your favorite Andhra kitchen classic.</h2>
             </div>
             <div class="category-grid">
