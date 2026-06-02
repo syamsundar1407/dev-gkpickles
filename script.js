@@ -96,6 +96,7 @@ const feedbackForm = document.getElementById("feedback-form");
 const formStatus = document.getElementById("form-status");
 const searchForm = document.querySelector(".site-search");
 const searchInput = document.getElementById("product-search");
+const shippingTicker = document.getElementById("shipping-ticker");
 let activeCategory = "all";
 
 function orderLink(productName) {
@@ -146,6 +147,24 @@ function categoryLabel(category) {
     }[category] || "GK Pickles";
 }
 
+function renderCategoryStatus() {
+    categoryButtons.forEach((button) => {
+        const category = button.dataset.category;
+        const count = category === "all"
+            ? products.length
+            : products.filter((product) => product.category === category).length;
+        const statusText = count > 0 ? "In stock" : "No stock";
+
+        button.querySelector(".category-status")?.remove();
+        button.insertAdjacentHTML("beforeend", `
+            <div class="category-status">
+                <span class="category-count">${count} ${count === 1 ? "Item" : "Items"}</span>
+                <span class="stock-badge ${count > 0 ? "in-stock" : "no-stock"}">${statusText}</span>
+            </div>
+        `);
+    });
+}
+
 categoryButtons.forEach((button) => {
     button.addEventListener("click", () => {
         categoryButtons.forEach((item) => item.classList.remove("active"));
@@ -186,7 +205,20 @@ siteNav.querySelectorAll("a").forEach((link) => {
 
 window.addEventListener("scroll", () => {
     siteHeader.classList.toggle("scrolled", window.scrollY > 18);
+    updateShippingTicker();
 });
+
+window.addEventListener("hashchange", updateShippingTicker);
+window.addEventListener("load", updateShippingTicker);
+
+function updateShippingTicker() {
+    const activeHash = ["#home", "#order"].includes(window.location.hash);
+    const activeScroll = !window.location.hash && ["home", "order"].some((id) => {
+        const rect = document.getElementById(id)?.getBoundingClientRect();
+        return rect && rect.top < window.innerHeight * 0.6 && rect.bottom > window.innerHeight * 0.25;
+    });
+    shippingTicker?.classList.toggle("show", activeHash || activeScroll);
+}
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -213,3 +245,5 @@ feedbackForm.addEventListener("submit", (event) => {
 });
 
 renderProducts();
+renderCategoryStatus();
+updateShippingTicker();
