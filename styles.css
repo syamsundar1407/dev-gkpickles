@@ -203,7 +203,8 @@ textarea {
     position: relative;
     min-height: 100vh;
     display: grid;
-    align-items: center;
+    gap: clamp(24px, 4vw, 42px);
+    align-content: center;
     padding: 130px clamp(18px, 6vw, 84px) 64px;
     overflow: hidden;
 }
@@ -231,7 +232,146 @@ textarea {
 .hero-content {
     position: relative;
     z-index: 1;
-    max-width: 760px;
+    width: min(100%, 940px);
+    max-width: 940px;
+    justify-self: center;
+}
+
+.hero-slider {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 940px);
+    margin-top: 28px;
+    min-height: 280px;
+    justify-self: center;
+}
+
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(150px, 20vw, 230px);
+    gap: clamp(18px, 4vw, 42px);
+    align-items: center;
+    min-height: 280px;
+    padding: clamp(24px, 4vw, 42px) clamp(54px, 7vw, 82px);
+    border: 3px solid var(--green);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 22px 50px rgba(69, 25, 16, 0.14);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(14px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.hero-slide.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+}
+
+.hero-slide img {
+    width: clamp(140px, 18vw, 210px);
+    aspect-ratio: 1;
+    object-fit: cover;
+    border: 2px solid rgba(23, 109, 56, 0.25);
+    border-radius: 8px;
+    box-shadow: 0 14px 28px rgba(127, 14, 27, 0.16);
+}
+
+.slide-kicker {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: var(--green);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.hero-slide h2 {
+    color: var(--deep-red);
+    font-size: clamp(1.9rem, 4vw, 3.2rem);
+}
+
+.hero-slide p {
+    margin: 10px 0 18px;
+    color: var(--muted);
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    font-weight: 700;
+    line-height: 1.45;
+}
+
+.slide-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 8px 14px;
+    color: var(--paper);
+    background: var(--green);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    font-weight: 900;
+}
+
+.hero-slide-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    z-index: 2;
+    display: flex;
+    gap: 8px;
+    transform: translateX(-50%);
+}
+
+.hero-slide-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 3;
+    display: grid;
+    width: 46px;
+    height: 46px;
+    place-items: center;
+    border: 3px solid var(--green);
+    border-radius: 50%;
+    color: var(--green);
+    background: var(--paper);
+    box-shadow: 0 12px 28px rgba(23, 109, 56, 0.16);
+    font-size: 2.1rem;
+    font-weight: 900;
+    line-height: 1;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.hero-slide-prev {
+    left: 14px;
+}
+
+.hero-slide-next {
+    right: 14px;
+}
+
+.hero-slide-arrow:hover,
+.hero-slide-arrow:focus-visible {
+    color: var(--paper);
+    background: var(--green);
+    outline: none;
+}
+
+.hero-slide-dots span {
+    width: 9px;
+    height: 9px;
+    border: 1px solid var(--green);
+    border-radius: 50%;
+    background: var(--paper);
+}
+
+.hero-slide-dots span.active {
+    width: 22px;
+    border-radius: 999px;
+    background: var(--green);
 }
 
 .sr-only {
@@ -494,19 +634,23 @@ h3 {
     font-size: 1.15rem;
 }
 
-.why,
-.why-grid,
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 34px;
+}
+
 .process-steps {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
+    gap: 36px;
 }
 
 .category-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 190px));
+    grid-template-columns: repeat(3, minmax(220px, 260px));
     justify-content: center;
-    gap: 30px;
+    gap: 32px;
 }
 
 .category-card,
@@ -524,10 +668,11 @@ h3 {
     display: grid;
     align-content: center;
     justify-items: center;
+    row-gap: 4px;
     width: 100%;
-    min-height: 118px;
-    padding: 14px;
-    border-color: var(--green);
+    min-height: 150px;
+    padding: 18px;
+    border: 3px solid var(--green);
     text-align: center;
     cursor: pointer;
 }
@@ -536,14 +681,16 @@ h3 {
     display: block;
     color: var(--deep-red);
     font-family: var(--heading);
-    font-size: 1.08rem;
+    font-size: 1.25rem;
     font-weight: 800;
     line-height: 1.1;
 }
 
 .category-card small {
+    display: block;
+    width: 100%;
     color: var(--muted);
-    font-size: 0.72rem;
+    font-size: 0.82rem;
     font-weight: 700;
     line-height: 1.25;
 }
@@ -604,6 +751,36 @@ h3 {
     padding: 26px;
 }
 
+.why-card {
+    display: grid;
+    align-content: center;
+    min-height: 260px;
+    padding: 42px 52px;
+    border: 2px solid var(--green);
+    border-radius: 8px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.why-card:hover,
+.why-card:focus-within,
+.why-card:active {
+    border-color: var(--green);
+    background: linear-gradient(135deg, rgba(237, 248, 229, 0.98), var(--paper));
+    box-shadow: 0 20px 46px rgba(23, 109, 56, 0.2);
+    transform: translateY(-3px);
+}
+
+.process-steps {
+    align-items: stretch;
+}
+
+.process-step {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    min-height: 260px;
+    padding: 28px;
+}
+
 .process-step span {
     display: inline-grid;
     width: 46px;
@@ -619,12 +796,15 @@ h3 {
 .process-step h3,
 .why-card h3 {
     color: var(--deep-red);
-    font-size: 1.45rem;
+    font-size: 1.65rem;
+    line-height: 1.1;
 }
 
 .process-step p,
 .why-card p {
     color: var(--muted);
+    font-size: 1.05rem;
+    margin-bottom: 0;
 }
 
 .order {
@@ -1019,6 +1199,16 @@ textarea:focus {
         align-self: start;
     }
 
+    .hero-slider {
+        width: 100%;
+        min-height: 260px;
+    }
+
+    .hero-slide {
+        min-height: 260px;
+        padding-inline: 62px;
+    }
+
     .hero-poster {
         grid-template-columns: clamp(86px, 18vw, 150px) minmax(0, 1fr);
         gap: 14px;
@@ -1038,10 +1228,41 @@ textarea:focus {
         grid-template-columns: 1fr;
     }
 
-    .why-grid,
     .process-steps,
     .product-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .why-card {
+        min-height: 230px;
+        padding: 36px 42px;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(3, 150px);
+        gap: 20px;
+    }
+
+    .category-card {
+        width: 150px;
+        min-height: 150px;
+        padding: 12px;
+    }
+
+    .category-card > span {
+        font-size: 1.12rem;
+    }
+
+    .category-card small {
+        font-size: 0.74rem;
+    }
+
+    .process-step {
+        min-height: 240px;
     }
 }
 
@@ -1086,6 +1307,43 @@ textarea:focus {
         padding-inline: 18px;
     }
 
+    .hero-slider {
+        min-height: 250px;
+    }
+
+    .hero-slide {
+        grid-template-columns: minmax(0, 1fr) 84px;
+        min-height: 250px;
+        padding: 18px 46px;
+    }
+
+    .hero-slide img {
+        width: 84px;
+    }
+
+    .hero-slide h2 {
+        font-size: 1.35rem;
+    }
+
+    .hero-slide p {
+        font-size: 0.82rem;
+    }
+
+    .hero-slide-arrow {
+        width: 34px;
+        height: 34px;
+        border-width: 2px;
+        font-size: 1.5rem;
+    }
+
+    .hero-slide-prev {
+        left: 7px;
+    }
+
+    .hero-slide-next {
+        right: 7px;
+    }
+
     .hero-title {
         font-size: clamp(2rem, 10vw, 3.2rem);
     }
@@ -1121,27 +1379,32 @@ textarea:focus {
     }
 
     .category-grid {
-        grid-template-columns: repeat(auto-fit, 132px);
+        grid-template-columns: repeat(3, 140px);
         gap: 14px;
     }
 
     .category-card {
-        width: 132px;
-        padding: 10px;
+        width: 140px;
+        min-height: 140px;
     }
 
-    .category-card > span {
-        font-size: 1rem;
-    }
-
-    .category-card small {
-        font-size: 0.68rem;
-    }
-
-    .why-grid,
     .process-steps,
     .product-grid {
         grid-template-columns: 1fr;
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .why-card {
+        min-height: 210px;
+        padding: 30px;
+    }
+
+    .process-step {
+        min-height: 220px;
     }
 
     .about-card {

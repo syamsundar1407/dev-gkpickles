@@ -97,7 +97,12 @@ const formStatus = document.getElementById("form-status");
 const searchForm = document.querySelector(".site-search");
 const searchInput = document.getElementById("product-search");
 const shippingTicker = document.getElementById("shipping-ticker");
+const heroSlides = document.querySelectorAll(".hero-slide");
+const heroSlideDots = document.querySelectorAll(".hero-slide-dots span");
+const heroPrev = document.querySelector(".hero-slide-prev");
+const heroNext = document.querySelector(".hero-slide-next");
 let activeCategory = "all";
+let activeHeroSlide = 0;
 
 function orderLink(productName) {
     const message = `Hi GK Pickles, I want to order ${productName}. Please share availability, quantity options, and delivery details.`;
@@ -210,6 +215,26 @@ window.addEventListener("scroll", () => {
 
 window.addEventListener("hashchange", updateShippingTicker);
 window.addEventListener("load", updateShippingTicker);
+
+function showHeroSlide(index) {
+    if (!heroSlides.length) return;
+    activeHeroSlide = index % heroSlides.length;
+    heroSlides.forEach((slide, slideIndex) => {
+        slide.classList.toggle("active", slideIndex === activeHeroSlide);
+    });
+    heroSlideDots.forEach((dot, dotIndex) => {
+        dot.classList.toggle("active", dotIndex === activeHeroSlide);
+    });
+}
+
+if (heroSlides.length) {
+    heroSlideDots.forEach((dot, index) => {
+        dot.addEventListener("click", () => showHeroSlide(index));
+    });
+    heroPrev?.addEventListener("click", () => showHeroSlide(activeHeroSlide - 1 + heroSlides.length));
+    heroNext?.addEventListener("click", () => showHeroSlide(activeHeroSlide + 1));
+    setInterval(() => showHeroSlide(activeHeroSlide + 1), 4200);
+}
 
 function updateShippingTicker() {
     const activeHash = ["#home", "#order"].includes(window.location.hash);

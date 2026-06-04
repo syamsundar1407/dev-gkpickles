@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=hero-slides-title-place">
 </head>
 <body>
     <header class="site-header" id="top">
@@ -59,14 +59,42 @@
                         <span class="badge-ornament" aria-hidden="true"></span>
                     </span>
                 </div>
-                <h1 class="hero-title">
-                    Spicy Taste
-                    <span class="chilli" aria-hidden="true">🌶️</span>
-                    <br>
-                    That Touches the
-                    <br>
-                    <span class="heart-text">Heart</span> <span aria-hidden="true">❤️</span>
-                </h1>
+                <div class="hero-slider reveal" aria-label="Homepage offers">
+                <button class="hero-slide-arrow hero-slide-prev" type="button" aria-label="Previous slide">‹</button>
+                <article class="hero-slide active">
+                    <div>
+                        <span class="slide-kicker">Summer Special</span>
+                        <h2>Summer Mango Pickles</h2>
+                        <p>Hurry up, order now. Fresh homemade Avakaya batches are ready.</p>
+                        <a class="slide-link" href="#order">Order now</a>
+                    </div>
+                    <img src="images/mango_pickle.jpg" alt="Small jar of mango pickle">
+                </article>
+                <article class="hero-slide">
+                    <div>
+                        <span class="slide-kicker">Fresh Batches</span>
+                        <h2>Pickles for Every Meal</h2>
+                        <p>Tomato, lemon, mango, and chilli pickles made with Andhra flavor.</p>
+                        <a class="slide-link" href="#categories">See categories</a>
+                    </div>
+                    <img src="images/lemon_pickle.jpg" alt="Lemon pickle jar">
+                </article>
+                <article class="hero-slide">
+                    <div>
+                        <span class="slide-kicker">Order Easy</span>
+                        <h2>WhatsApp Direct Orders</h2>
+                        <p>Choose your favorite jar and confirm quantity, delivery, and price in chat.</p>
+                        <a class="slide-link" href="#order">Start order</a>
+                    </div>
+                    <img src="images/tomato_pickle.jpg" alt="Tomato pickle jar">
+                </article>
+                <button class="hero-slide-arrow hero-slide-next" type="button" aria-label="Next slide">›</button>
+                <div class="hero-slide-dots" aria-hidden="true">
+                    <span class="active"></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                </div>
                 <div class="hero-actions">
                     <a class="btn primary" href="#order">Order on WhatsApp</a>
                     <a class="btn secondary" href="#categories">Explore Categories</a>
@@ -237,6 +265,6 @@
         </div>
         <p class="copyright">&copy; 2026 GK Pickles. All rights reserved.</p>
     </footer>
-    <script src="script.js?v=category-stock"></script>
+    <script src="script.js?v=hero-slides-title-place"></script>
 </body>
 </html>
